@@ -32,7 +32,7 @@ open class OpenApiConfig(val ctx : FhirContext) {
     val securitySchemeName = "SMART-on-FHIR";
     lateinit var fhirServerProperties: FHIRServerProperties
 
-    val NEY = "NHS North East and Jorvik Genomics"
+    val NEY = "Jorvik API"
     fun getSecurity(): ArrayList<SecurityRequirement> {
         val array = ArrayList<SecurityRequirement>()
 
@@ -113,7 +113,7 @@ open class OpenApiConfig(val ctx : FhirContext) {
                         // Removed example profile
                         .schema(StringSchema().format("string"))))
 
-        oas.path("/FHIR/R4/\$GenomicTestMetadata",validateItem)
+        oas.path("/FHIR/R4/\$find-test-metadata",validateItem)
 
 
         return oas

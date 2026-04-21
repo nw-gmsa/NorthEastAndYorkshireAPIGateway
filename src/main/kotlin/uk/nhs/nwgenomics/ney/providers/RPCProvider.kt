@@ -27,7 +27,7 @@ class RPCProvider(
     }
 
 
-    @Operation(name = "\$GenomicTestMetadata", idempotent = true, canonicalUrl = "http://hl7.org/fhir/OperationDefinition/MessageHeader-process-message")
+    @Operation(name = "\$find-test-metadata", idempotent = true, canonicalUrl = "http://hl7.org/fhir/OperationDefinition/MessageHeader-process-message")
     fun processMessage(
         servletRequest: HttpServletRequest,
         theRequestDetails : RequestDetails,
@@ -39,7 +39,6 @@ class RPCProvider(
         val responseBundle = Bundle()
         //responseBundle.setIdentifier(bundle.identifier)
         responseBundle.setType(Bundle.BundleType.COLLECTION)
-
 
         return responseBundle
     }
