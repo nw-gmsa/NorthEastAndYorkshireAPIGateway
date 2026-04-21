@@ -1,0 +1,38 @@
+serverUrl: http://localhost:8181/R4
+fhirVersion: R4
+server:
+  port: 8081
+  tomcat:
+    threads:
+      max: 10
+
+management:
+  health:
+    elasticsearch:
+        enabled: false
+  endpoints:
+    web.exposure:
+      include: "*"
+    jmx:
+      exposure:
+        include: health,info,loggers,httpexchanges
+
+
+hawtio:
+  authenticationEnabled: false
+  disableProxy: false
+  proxyAllowlist: localhost, 127.0.0.1, fubfc00id1.execute-api.eu-west-2.amazonaws.com, fzmokdbqia.execute-api.eu-west-2.amazonaws.com
+
+fhir:
+  oauth2:
+    enabled: false
+    authorizationUrl:
+    tokenUrl:
+  server:
+    name: Orchestration Engine
+    baseUrl: http://localhost:8081
+    version: 8.6.8
+    pagingEnabled: true
+    pageSize: 20
+    pageSizeMax: 1000
+
