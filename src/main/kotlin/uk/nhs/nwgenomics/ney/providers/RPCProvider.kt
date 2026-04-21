@@ -1,18 +1,18 @@
 package uk.nhs.nwgenomics.ney.providers
 
 import ca.uhn.fhir.rest.annotation.Operation
-import ca.uhn.fhir.rest.annotation.ResourceParam
+
 import ca.uhn.fhir.rest.api.server.RequestDetails
-import ca.uhn.fhir.rest.server.exceptions.UnprocessableEntityException
+
 import jakarta.servlet.http.HttpServletRequest
 
 
 import org.hl7.fhir.r4.model.*
-import org.hl7.fhir.r4.model.OperationOutcome.IssueSeverity
+
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 import uk.nhs.nwgenomics.ney.configuration.FHIRServerProperties
-import java.util.*
+
 
 
 @Component

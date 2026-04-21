@@ -12,7 +12,7 @@ import io.swagger.v3.oas.models.media.Content
 import io.swagger.v3.oas.models.media.MediaType
 import io.swagger.v3.oas.models.media.StringSchema
 import io.swagger.v3.oas.models.parameters.Parameter
-import io.swagger.v3.oas.models.parameters.RequestBody
+
 import io.swagger.v3.oas.models.responses.ApiResponse
 import io.swagger.v3.oas.models.responses.ApiResponses
 import io.swagger.v3.oas.models.security.OAuthFlow
@@ -21,8 +21,7 @@ import io.swagger.v3.oas.models.security.Scopes
 import io.swagger.v3.oas.models.security.SecurityRequirement
 import io.swagger.v3.oas.models.security.SecurityScheme
 import io.swagger.v3.oas.models.servers.Server
-import io.swagger.v3.oas.models.tags.Tag
-import org.springframework.beans.factory.annotation.Qualifier
+
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
@@ -32,7 +31,7 @@ open class OpenApiConfig(val ctx : FhirContext) {
     val securitySchemeName = "SMART-on-FHIR";
     lateinit var fhirServerProperties: FHIRServerProperties
 
-    val NEY = "Jorvik API"
+    val NEY = "FHIR API"
     fun getSecurity(): ArrayList<SecurityRequirement> {
         val array = ArrayList<SecurityRequirement>()
 

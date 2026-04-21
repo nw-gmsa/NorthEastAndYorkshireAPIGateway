@@ -29,7 +29,7 @@ fhir:
     authorizationUrl:
     tokenUrl:
   server:
-    name: NHS GMSA API Gateway
+    name: Genomic Archive and Communication System (GACS) API
     baseUrl: http://localhost:8081
     version: 8.6.8
     pagingEnabled: true
