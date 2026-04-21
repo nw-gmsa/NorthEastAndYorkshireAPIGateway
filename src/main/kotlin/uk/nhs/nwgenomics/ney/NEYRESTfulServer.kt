@@ -15,6 +15,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.context.ApplicationContext
 import uk.nhs.nwgenomics.ney.configuration.FHIRServerProperties
 import uk.nhs.nwgenomics.ney.interceptor.CapabilityStatementInterceptor
+import uk.nhs.nwgenomics.ney.providers.RPCProvider
 import java.util.ArrayList
 import java.util.TimeZone
 
@@ -23,6 +24,7 @@ class NEYRESTfulServer internal constructor(
     private val appCtx: ApplicationContext,
     private val ctx: FhirContext,
     val fhirServerProperties: FHIRServerProperties,
+    val rpcProvider: RPCProvider
 ) : RestfulServer() {
     override fun addHeadersToResponse(theHttpResponse: HttpServletResponse) {
         theHttpResponse.addHeader("X-Powered-By", "HAPI FHIR " + VersionUtil.getVersion() + " RESTful Server")
@@ -40,9 +42,9 @@ class NEYRESTfulServer internal constructor(
         defaultResponseEncoding =  EncodingEnum.JSON
 
         val resourceProviders: MutableList<IResourceProvider?> = ArrayList()
-
-
         registerProviders(resourceProviders)
+
+        registerProvider(rpcProvider)
 
         fhirContext = appCtx.getBean(FhirContext::class.java)
 

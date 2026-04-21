@@ -97,6 +97,23 @@ open class OpenApiConfig(val ctx : FhirContext) {
                         .responses(getApiResponses())
                 )
         )
+        val validateItem = PathItem()
+            .post(
+                Operation()
+                    .addTagsItem(NEY)
+                    .summary(
+                        "Return Genomic Testing Metadata for a GMSA.")
+                    .responses(getApiResponsesJSON())
+                    .addParametersItem(Parameter()
+                        .name("GMSAODSCode")
+                        .`in`("query")
+                        .required(false)
+                        .style(Parameter.StyleEnum.SIMPLE)
+                        .description("ODS of GMSA")
+                        // Removed example profile
+                        .schema(StringSchema().format("string"))))
+
+        oas.path("/FHIR/R4/\$GenomicTestMetadata",validateItem)
 
 
         return oas
@@ -110,6 +127,17 @@ open class OpenApiConfig(val ctx : FhirContext) {
         response200.content =
             Content().addMediaType("application/fhir+json", MediaType().schema(StringSchema()._default("{}")))
                 .addMediaType("application/fhir+xml", MediaType().schema(StringSchema()._default("")))
+        return ApiResponses().addApiResponse("200", response200)
+    }
+
+    fun getApiResponsesJSON(): ApiResponses {
+
+        val response200 = ApiResponse()
+        response200.description = "OK"
+        val exampleList = mutableListOf<Example>()
+        exampleList.add(Example().value("{}"))
+        response200.content =
+            Content().addMediaType("application/json", MediaType().schema(StringSchema()._default("{}")))
         return ApiResponses().addApiResponse("200", response200)
     }
 
