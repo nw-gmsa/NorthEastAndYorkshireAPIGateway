@@ -31,7 +31,7 @@ open class OpenApiConfig(val ctx : FhirContext) {
     val securitySchemeName = "SMART-on-FHIR";
     lateinit var fhirServerProperties: FHIRServerProperties
 
-    val NEY = "FHIR API"
+    val NEY = "GMSA FHIR API"
     fun getSecurity(): ArrayList<SecurityRequirement> {
         val array = ArrayList<SecurityRequirement>()
 
