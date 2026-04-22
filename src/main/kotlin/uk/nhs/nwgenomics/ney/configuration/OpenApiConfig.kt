@@ -101,16 +101,27 @@ open class OpenApiConfig(val ctx : FhirContext) {
                 Operation()
                     .addTagsItem(NEY)
                     .summary(
-                        "Return Genomic Testing Metadata for a GMSA.")
+                        "Return Genomic Testing Metadata for a ICS ODS Code.")
                     .responses(getApiResponsesJSON())
                     .addParametersItem(Parameter()
-                        .name("GMSAODSCode")
+                        .name("ICSODSCode")
+                        .`in`("query")
+                        .required(true)
+                        .style(Parameter.StyleEnum.SIMPLE)
+                        .description("ODS of ICS. Multiple values are allowed, use comma to separate.")
+                        // Removed example profile
+                        .schema(StringSchema().format("string"))
+                        .example("QOP"))
+                    .addParametersItem(Parameter()
+                        .name("_lastUpdated")
                         .`in`("query")
                         .required(false)
                         .style(Parameter.StyleEnum.SIMPLE)
-                        .description("ODS of GMSA")
+                        .description("Date since last Updated")
                         // Removed example profile
-                        .schema(StringSchema().format("string"))))
+                        .schema(StringSchema().format("string"))
+                        .example("gt2024-04-22")
+                    ))
 
         oas.path("/FHIR/R4/\$find-test-metadata",validateItem)
 
