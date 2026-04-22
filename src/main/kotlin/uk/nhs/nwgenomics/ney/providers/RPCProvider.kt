@@ -66,6 +66,7 @@ class RPCProvider(
             .where(ServiceRequest.REQUESTER.hasAnyOfIds(orgList))
             .revInclude(DiagnosticReport.INCLUDE_BASED_ON)
             .include(ServiceRequest.INCLUDE_SPECIMEN)
+            .include(ServiceRequest.INCLUDE_PATIENT)
             .execute()
 
         return ordersResults
