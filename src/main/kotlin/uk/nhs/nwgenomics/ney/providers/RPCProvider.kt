@@ -5,9 +5,7 @@ import ca.uhn.fhir.context.FhirContext
 import ca.uhn.fhir.rest.annotation.Operation
 import ca.uhn.fhir.rest.annotation.OperationParam
 import ca.uhn.fhir.rest.api.server.RequestDetails
-import ca.uhn.fhir.rest.param.DateParam
 import ca.uhn.fhir.rest.param.DateRangeParam
-import ca.uhn.fhir.rest.param.ParamPrefixEnum
 import jakarta.servlet.http.HttpServletRequest
 import org.hl7.fhir.r4.model.Bundle
 import org.hl7.fhir.r4.model.DiagnosticReport
