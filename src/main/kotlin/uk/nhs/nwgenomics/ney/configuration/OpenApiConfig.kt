@@ -35,7 +35,7 @@ open class OpenApiConfig(val ctx : FhirContext) {
     fun getSecurity(): ArrayList<SecurityRequirement> {
         val array = ArrayList<SecurityRequirement>()
 
-        if (fhirServerProperties.oauth2.enabled) {
+        if (true) {
             val security = SecurityRequirement()
             security.addList(securitySchemeName)
             array.add(security)
@@ -65,14 +65,15 @@ open class OpenApiConfig(val ctx : FhirContext) {
         oas.addServersItem(
             Server().description(fhirServerProperties.server.name).url(fhirServerProperties.server.baseUrl)
         )
-        if (fhirServerProperties.oauth2.enabled) {
+        //if (fhirServerProperties.oauth2.enabled) {
+        if (true) {
             val scheme =  SecurityScheme()
                 .name(securitySchemeName)
                 .scheme("bearer")
                 .type(SecurityScheme.Type.OAUTH2)
                 .bearerFormat("JWT")
             val scopes = Scopes()
-            scopes.put("aws.cognito.signin.user.admin","")
+            //scopes.put("aws.cognito.signin.user.admin","")
             scopes.put("email","")
             scopes.put("launch/patient","When launching outside the EHR, ask for a patient to be selected at launch time.")
             scopes.put("patient/*.rs","Permission to read and search any resource for the current patient")
@@ -87,6 +88,7 @@ open class OpenApiConfig(val ctx : FhirContext) {
             oas.components = component
         }
 
+
         oas.path(
             "/FHIR/R4/metadata", PathItem()
                 .get(
@@ -100,6 +102,7 @@ open class OpenApiConfig(val ctx : FhirContext) {
             .post(
                 Operation()
                     .addTagsItem(NEY)
+                    .security(getSecurity())
                     .summary(
                         "Return Genomic Testing Metadata for a ICS ODS Code.")
                     .responses(getApiResponsesJSON())
