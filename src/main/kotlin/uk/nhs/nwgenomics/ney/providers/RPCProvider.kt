@@ -35,7 +35,7 @@ class RPCProvider(
     fun processMessage(
         servletRequest: HttpServletRequest,
         theRequestDetails : RequestDetails,
-        @OperationParam(name = "ICSODSCode") icsODSCode: List<String>,
+        @OperationParam(name = "ICSODSCode") icsODSCodeList: String,
         @OperationParam(name = "_lastUpdated") dateParam: DateRangeParam?,
              ): Bundle? {
         val orgList = mutableSetOf<String>()
@@ -45,6 +45,7 @@ class RPCProvider(
             if (dateParam.lowerBound != null) log.info("Lower Date param is ${dateParam.lowerBound.valueAsString}")
             if (dateParam.upperBound != null) log.info("Upper Date param is ${dateParam.upperBound.valueAsString}")
         }
+        val icsODSCode = icsODSCodeList.split(',')
         if (icsODSCode.size >0) {
             for (icsCode in icsODSCode) {
                 val icsResults: Bundle = client.search<Bundle>()
