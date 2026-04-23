@@ -105,16 +105,24 @@ open class OpenApiConfig(val ctx : FhirContext) {
                     .security(getSecurity())
                     .summary(
                         "Return Genomic Testing Metadata for a ICS ODS Code.")
+                    .description("This operation returns Genomic Ordering and Reporting metadata for a ICS ODS Code for a given time period."
+                            + "\n The returned response is a [FHIR Bundle](https://hl7.org/fhir/R4/bundle.html) of a type 'collection` with entries containing "
+                            + "\n"
+                            + "\n - [ServiceRequest](https://build.fhir.org/ig/nw-gmsa/nw-gmsa.github.com/StructureDefinition-ServiceRequest.html) which contain the Order metadata (is related to HL7 ORC segment)."
+                            + "\n - [DiagnosticReport](https://build.fhir.org/ig/nw-gmsa/nw-gmsa.github.com/StructureDefinition-DiagnosticReport.html) which contain the Report metadata (is related to HL7 OBR segment)."
+                            + "\n - [Specimen](https://build.fhir.org/ig/nw-gmsa/nw-gmsa.github.com/StructureDefinition-Specimen.html) which contain the Sample metadata (is related to HL7 SPM segment)."
+                            + "\n - [Patient](https://build.fhir.org/ig/nw-gmsa/nw-gmsa.github.com/StructureDefinition-Patient.html) which contain the Order metadata (is related to HL7 PID segment)."
+                    )
                     .responses(getApiResponsesJSON())
                     .addParametersItem(Parameter()
                         .name("ICSODSCode")
                         .`in`("query")
                         .required(true)
                         .style(Parameter.StyleEnum.SIMPLE)
-                        .description("ODS of ICS. Multiple values are allowed, use comma to separate.")
+
                         // Removed example profile
                         .schema(StringSchema().format("string"))
-                        .example("QOP"))
+                        .example("QWO,QF7,QHM,QOQ"))
                     .addParametersItem(Parameter()
                         .name("_lastUpdated")
                         .`in`("query")
